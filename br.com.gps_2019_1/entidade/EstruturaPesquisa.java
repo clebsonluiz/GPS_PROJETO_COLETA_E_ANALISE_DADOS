@@ -23,10 +23,7 @@ public class EstruturaPesquisa extends Entidade{
 	@OneToOne
 	@JoinColumn(name = "pesquisa_id")
 	private Pesquisa pesquisa;
-	@Column(name = "data_inicio")
-	private LocalDate dataInicio;
-	@Column(name = "data_fim")
-	private LocalDate dataFim;
+
 	
 	public String getCol_1_nome_familia() {return col_1_nome_familia;}
 	public String getCol_2_nome() {return col_2_nome;}
@@ -40,29 +37,6 @@ public class EstruturaPesquisa extends Entidade{
 	public void setCol_2_nome(String col_2_nome) {this.col_2_nome = col_2_nome;}
 	public void setCol_3_valor(String col_3_valor) {this.col_3_valor = col_3_valor;}
 	public void setCategoria_dados(String categoria_dados) {this.categoria_dados = categoria_dados;}
-	/**
-	 * @return the dataInicio
-	 */
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-	/**
-	 * @param dataInicio the dataInicio to set
-	 */
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-	/**
-	 * @return the dataFim
-	 */
-	public LocalDate getDataFim() {
-		return dataFim;
-	}
-	/**
-	 * @param dataFim the dataFim to set
-	 */
-	public void setDataFim(LocalDate dataFim) {
-		this.dataFim = dataFim;
-	}
+
 	
 }
