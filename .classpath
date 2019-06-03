@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="libs/JPA_Hibernate/jboss-logging-3.3.0.Final.jar"/>
 	<classpathentry kind="lib" path="libs/JPA_Hibernate/jboss-transaction-api_1.2_spec-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="libs/JPA_Hibernate/postgresql-9.4.1212.jar"/>
+	<classpathentry kind="lib" path="libs/Outros/jfoenix-8.0.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

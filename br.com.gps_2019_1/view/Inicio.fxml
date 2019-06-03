@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+   <children>
+      <BorderPane layoutX="311.0" layoutY="183.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="Usuario">
+                  <items>
+                    <MenuItem fx:id="alterSenhaMenuItem" mnemonicParsing="false" onAction="#action" text="Alterar senha" />
+                        <MenuItem fx:id="deletContaMenuItem" mnemonicParsing="false" onAction="#action" text="Deletar conta" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Sobre">
+                  <items>
+                    <MenuItem fx:id="infoSistemaMenuItem" mnemonicParsing="false" onAction="#action" text="Sobre o sistema" />
+                        <MenuItem fx:id="infoDevsMenuItem" mnemonicParsing="false" onAction="#action" text="Sobre os desenvolvedores" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Sair">
+                  <items>
+                        <MenuItem fx:id="sairMenuItem" mnemonicParsing="false" onAction="#action" text="Sair" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <AnchorPane fx:id="pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
