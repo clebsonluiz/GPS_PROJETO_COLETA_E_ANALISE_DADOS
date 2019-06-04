@@ -1,3 +1,4 @@
+
 package entidade;
 
 import javax.persistence.Column;
@@ -40,3 +41,4 @@ public class EstruturaPesquisa extends Entidade{
 	public void setTitulo_estrutura(String titulo_estrutura) {this.titulo_estrutura = titulo_estrutura;}
 	
 }
+
