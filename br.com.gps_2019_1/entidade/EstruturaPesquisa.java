@@ -11,18 +11,18 @@ import javax.persistence.Table;
 @Table(name = "estrutura_pesquisa")
 public class EstruturaPesquisa extends Entidade{
 
-	@Column
+	@Column(nullable = false)
 	private String titulo_estrutura;
-	@Column
+	@Column(nullable = true)
 	private String col_1_nome_familia;
-	@Column
+	@Column(nullable = false)
 	private String col_2_nome;
-	@Column
+	@Column(nullable = false)
 	private String col_3_valor;
-	@Column
+	@Column(nullable = false)
 	private String categoria_dados;
 	@ManyToOne
-	@JoinColumn(name = "pesquisa_id")
+	@JoinColumn(name = "pesquisa_id", nullable = false)
 	private Pesquisa pesquisa;
 	
 	public String getCol_1_nome_familia() {return col_1_nome_familia;}

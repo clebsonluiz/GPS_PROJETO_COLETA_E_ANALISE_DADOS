@@ -4,18 +4,22 @@
 package entidade;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author ayrton
  *
  */
+@Entity
+@Table(name = "usuario")
 public class Usuario extends Entidade{
 
-	@Column
+	@Column(nullable = false)
 	private String nome;
-	@Column
+	@Column(unique = true, nullable = false)
 	private String login;
-	@Column
+	@Column(nullable = false)
 	private String senha;
 	/**
 	 * @return the nome

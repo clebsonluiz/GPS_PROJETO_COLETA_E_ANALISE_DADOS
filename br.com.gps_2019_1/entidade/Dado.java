@@ -1,19 +1,23 @@
 package entidade;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "dado")
 public class Dado extends Entidade{
 
-	@Column
+	@Column(nullable = true)
 	private String col_1_nome_familia;
-	@Column
+	@Column(nullable = false)
 	private String col_2_nome;
-	@Column
+	@Column(nullable = false)
 	private String col_3_valor;
 	@ManyToOne
-	@JoinColumn(name = "estrutura_pesquisa_id")
+	@JoinColumn(name = "estrutura_pesquisa_id", nullable = false)
 	private EstruturaPesquisa estruturaPesquisa;
 	
 	public String getCol_1_nome_familia() {return col_1_nome_familia;}

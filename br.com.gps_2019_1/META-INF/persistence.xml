@@ -12,10 +12,10 @@
         
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/GPS_2019_1" /> <!-- BD Mane -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/GPS" /> <!-- BD Mane -->
             <property name="javax.persistence.jdbc.user" value="postgres" /> <!--DB User -->
-<!--             <property name="javax.persistence.jdbc.password" value="13111996" /> DB Password -->
-            <property name="javax.persistence.jdbc.password" value="postgres" /> <!--DB Password -->
+            <property name="javax.persistence.jdbc.password" value="13111996" /> <!--DB Password -->
+<!--        	<property name="javax.persistence.jdbc.password" value="postgres" /> DB Password -->
 	    <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> <!-- DB Dialect -->
             <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
             <property name="hibernate.hbm2ddl.import_files" value="META-INF/sql/querys-iniciais.sql"/>

@@ -12,16 +12,16 @@ import javax.persistence.Table;
 @Table(name = "pesquisa")
 public class Pesquisa extends Entidade{
 
-	@Column
+	@Column(nullable = false)
 	private String titulo;
 	@Column
 	private String descricao;
 	@ManyToOne
-	@JoinColumn(name = "usuario_id")
+	@JoinColumn(name = "usuario_id", nullable = false)
 	private Usuario usuario;
-	@Column(name = "data_inicio")
+	@Column(name = "data_inicio", nullable = false)
 	private LocalDate dataInicio;
-	@Column(name = "data_fim")
+	@Column(name = "data_fim", nullable = false)
 	private LocalDate dataFim;
 	
 	public String getTitulo() {return titulo;}
