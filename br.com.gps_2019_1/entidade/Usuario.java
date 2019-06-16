@@ -3,9 +3,12 @@
  */
 package entidade;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author ayrton
@@ -21,6 +24,10 @@ public class Usuario extends Entidade{
 	private String login;
 	@Column(nullable = false)
 	private String senha;
+	
+	@Transient
+	private List<Pesquisa> pesquisas;
+	
 	/**
 	 * @return the nome
 	 */
@@ -56,6 +63,18 @@ public class Usuario extends Entidade{
 	 */
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	/**
+	 * @return the pesquisas
+	 */
+	public List<Pesquisa> getPesquisas() {
+		return pesquisas;
+	}
+	/**
+	 * @param pesquisas the pesquisas to set
+	 */
+	public void setPesquisas(List<Pesquisa> pesquisas) {
+		this.pesquisas = pesquisas;
 	}
 	
 	

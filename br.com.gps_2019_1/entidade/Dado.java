@@ -10,14 +10,17 @@ import javax.persistence.Table;
 @Table(name = "dado")
 public class Dado extends Entidade{
 
-	@Column(nullable = true)
+	@Column
 	private String col_1_nome_familia;
-	@Column(nullable = false)
+	
+	@Column
 	private String col_2_nome;
-	@Column(nullable = false)
+	
+	@Column
 	private String col_3_valor;
+	
 	@ManyToOne
-	@JoinColumn(name = "estrutura_pesquisa_id", nullable = false)
+	@JoinColumn(name = "estrutura_pesquisa_id")
 	private EstruturaPesquisa estruturaPesquisa;
 	
 	public String getCol_1_nome_familia() {return col_1_nome_familia;}
