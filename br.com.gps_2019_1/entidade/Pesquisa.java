@@ -1,12 +1,14 @@
 package entidade;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "pesquisa")
@@ -14,15 +16,22 @@ public class Pesquisa extends Entidade{
 
 	@Column
 	private String titulo;
+	
 	@Column
 	private String descricao;
+	
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
+	
 	@Column(name = "data_inicio")
 	private LocalDate dataInicio;
+	
 	@Column(name = "data_fim")
 	private LocalDate dataFim;
+	
+	@Transient
+	private List<EstruturaPesquisa> estruturaPesquisas;
 	
 	public String getTitulo() {return titulo;}
 	public String getDescricao() {return descricao;}
@@ -64,6 +73,18 @@ public class Pesquisa extends Entidade{
 	 */
 	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
+	}
+	/**
+	 * @return the estruturaPesquisas
+	 */
+	public List<EstruturaPesquisa> getEstruturaPesquisas() {
+		return estruturaPesquisas;
+	}
+	/**
+	 * @param estruturaPesquisas the estruturaPesquisas to set
+	 */
+	public void setEstruturaPesquisas(List<EstruturaPesquisa> estruturaPesquisas) {
+		this.estruturaPesquisas = estruturaPesquisas;
 	}
 	
 }
