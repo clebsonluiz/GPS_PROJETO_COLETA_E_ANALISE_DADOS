@@ -18,34 +18,36 @@ import javafx.scene.layout.AnchorPane;
  */
 public class ControlerInicio implements Initializable {
 
+	@FXML
+	private MenuItem alterSenhaMenuItem;
 
-    @FXML
-    private MenuItem alterSenhaMenuItem;
+	@FXML
+	private MenuItem deletContaMenuItem;
 
-    @FXML
-    private MenuItem deletContaMenuItem;
+	@FXML
+	private MenuItem novaPesqMenuItem;
 
-    @FXML
-    private MenuItem infoSistemaMenuItem;
+	@FXML
+	private MenuItem infoSistemaMenuItem;
 
-    @FXML
-    private MenuItem infoDevsMenuItem;
+	@FXML
+	private MenuItem infoDevsMenuItem;
 
-    @FXML
-    private MenuItem sairMenuItem;
+	@FXML
+	private MenuItem sairMenuItem;
 
-    @FXML
-    private AnchorPane pane;
+	@FXML
+	private AnchorPane pane;
 
-    @FXML
-    void action(ActionEvent event) {
+	@FXML
+	void action(ActionEvent event) {
 
-    }
-	
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
