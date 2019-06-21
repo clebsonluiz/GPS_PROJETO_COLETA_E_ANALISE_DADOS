@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.image.Image?>
@@ -11,20 +12,23 @@
    <children>
       <AnchorPane layoutX="168.0" layoutY="112.0" prefHeight="377.0" prefWidth="464.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="80.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../res/woman.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="80.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../res/key.png" />
                </image>
             </ImageView>
-            <JFXTextField fx:id="loginField" layoutX="229.0" layoutY="114.0" onAction="#action" promptText="Login" />
-            <JFXPasswordField fx:id="senhaField" layoutX="229.0" layoutY="238.0" onAction="#action" promptText="Senha" />
-            <JFXButton fx:id="entrarBtn" layoutX="322.0" layoutY="313.0" onAction="#action" text="Entrar" />
-            <JFXButton fx:id="sairBtn" layoutX="232.0" layoutY="313.0" onAction="#action" text="Sair" />
+            <JFXTextField fx:id="loginField" layoutX="107.0" layoutY="116.0" onAction="#action" promptText="Login" />
+            <JFXPasswordField fx:id="senhaField" layoutX="107.0" layoutY="210.0" onAction="#action" promptText="Senha" />
+            <JFXButton fx:id="entrarBtn" layoutX="203.0" layoutY="300.0" onAction="#action" text="Entrar" />
+            <JFXButton fx:id="sairBtn" layoutX="141.0" layoutY="300.0" onAction="#action" text="Sair" />
+            <JFXPasswordField fx:id="confimSenhaField" disable="true" layoutX="291.0" layoutY="210.0" onAction="#action" promptText="Confirmar senha" visible="false" />
+            <JFXButton fx:id="cadUserBtn" disable="true" layoutX="268.0" layoutY="300.0" onAction="#action" text="Cadastrar" visible="false" />
+            <JFXCheckBox fx:id="cadUserChBox" layoutX="106.0" layoutY="258.0" onAction="#action" text="Desejo me cadastrar" />
          </children>
       </AnchorPane>
    </children>

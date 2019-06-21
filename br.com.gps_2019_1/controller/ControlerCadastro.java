@@ -14,16 +14,7 @@ import javafx.scene.control.Tab;
 
 public class ControlerCadastro implements Initializable {
 
-    @FXML
-    private Tab pesquisaTab;
-
-    @FXML
-    private JFXButton continuarPesqBtn;
-
-    @FXML
-    private JFXButton voltarPesqBtn;
-
-    @FXML
+	@FXML
     private JFXTextField tituloPesqField;
 
     @FXML
@@ -36,13 +27,7 @@ public class ControlerCadastro implements Initializable {
     private JFXDatePicker fimPesqDate;
 
     @FXML
-    private Tab estruPesqTab;
-
-    @FXML
     private JFXButton addEstruPesqBtn;
-
-    @FXML
-    private JFXButton voltarEstruPesqBtn;
 
     @FXML
     private JFXTextField tituloEstruPesqField;
@@ -60,16 +45,7 @@ public class ControlerCadastro implements Initializable {
     private JFXTextField valorEstruPesqField;
 
     @FXML
-    private JFXButton contEstruPesqBtn;
-
-    @FXML
-    private Tab dadosTab;
-
-    @FXML
     private JFXButton addDadosBtn;
-
-    @FXML
-    private JFXButton voltarDadosBtn;
 
     @FXML
     private JFXTextField nomeFamiliaDadosField;
@@ -81,7 +57,10 @@ public class ControlerCadastro implements Initializable {
     private JFXTextField valorDadosField;
 
     @FXML
-    private JFXButton finalizarbtn;
+    private JFXButton cancelarCadBtn;
+
+    @FXML
+    private JFXButton finalizarCadBtn;
 
     @FXML
     void action(ActionEvent event) {
