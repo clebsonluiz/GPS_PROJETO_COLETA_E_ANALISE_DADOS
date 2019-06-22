@@ -6,6 +6,7 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
@@ -24,7 +25,7 @@ public class ControlerLogin implements Initializable{
 
 	private String pass;
 	
-    @FXML
+	@FXML
     private JFXTextField loginField;
 
     @FXML
@@ -35,6 +36,15 @@ public class ControlerLogin implements Initializable{
 
     @FXML
     private JFXButton sairBtn;
+
+    @FXML
+    private JFXPasswordField confimSenhaField;
+
+    @FXML
+    private JFXButton cadUserBtn;
+
+    @FXML
+    private JFXCheckBox cadUserChBox;
 
     private Usuario usuario;
     
