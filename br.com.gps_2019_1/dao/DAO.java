@@ -141,6 +141,41 @@ private EntityManagerFactory entityManagerFactory;
 		return t;
 	}
 	
+	public Object buscaSQL(String sql) throws DAOException{
+		EntityManager entityManager = createEntityManager();
+		Object t = null;
+		try {
+			
+			Session session = entityManager.unwrap(Session.class);
+			
+			@SuppressWarnings({ "deprecation", "unchecked" })
+			NativeQuery<Object> query = session.createSQLQuery(sql);
+			
+			t = query.getSingleResult();
+			
+		} 
+		
+		catch (Exception e) 
+		{
+			if(e.getMessage().equals("org.hibernate.MappingException: No Dialect mapping for JDBC type: 2002"))
+			{
+				e.printStackTrace();
+				throw new DAOException("Mapeamento Errado");
+			}
+			if(e.getMessage().equals("org.hibernate.exception.GenericJDBCException: could not extract ResultSet"))
+			{
+				e.printStackTrace();
+				throw new DAOException("Sem resultados");
+			}
+			e.printStackTrace();
+			throw new DAOException("Erro de busca lista SQL no banco de dados");
+		} 
+		finally 
+		{
+			entityManager.close();
+		}
+		return t;
+	}
 	
 	public List<Object[]> buscaSQLGenerica(String sql) throws DAOException{
 		EntityManager entityManager = createEntityManager();

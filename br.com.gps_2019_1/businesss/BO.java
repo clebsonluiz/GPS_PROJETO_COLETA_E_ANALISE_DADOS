@@ -61,6 +61,10 @@ public abstract class BO<T extends Entidade>{
 		return this.daoT.buscarAll(classe);
 	};
 	
+	public Object buscaSQLGenerica(String sql)throws BOException, DAOException {
+		return this.daoT.buscaSQL(sql);
+	}
+	
 	public List<Object[]> buscaListaSQLGenerica(String sql)throws BOException, DAOException {
 		return this.daoT.buscaSQLGenerica(sql);
 	}
