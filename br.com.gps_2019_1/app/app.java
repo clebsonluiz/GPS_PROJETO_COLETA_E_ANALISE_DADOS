@@ -49,11 +49,12 @@ public class app extends Application {
 
 		try {
 
-			inicio = FXMLLoader.load(getClass().getClassLoader().getResource("/GPS_2019_1/br.com.gps_2019_1/view/Inicio.fxml"));
-			login = FXMLLoader.load(getClass().getClassLoader().getResource("/GPS_2019_1/br.com.gps_2019_1/view/Login.fxml"));
+			inicio = FXMLLoader.load(getClass().getClassLoader().getResource("view/Inicio.fxml"));
+			login = FXMLLoader.load(getClass().getClassLoader().getResource("view/Login.fxml"));
 
 		} catch (IOException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		sceneLogin = new Scene(login);
