@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
+import app.app;
 import entidade.Dado;
 import entidade.EstruturaPesquisa;
 import entidade.Pesquisa;
@@ -104,12 +105,22 @@ public class ControlerCadastro implements Initializable {
 		if (event.getSource() == finalizarCadBtn) {
 
 			limparCamposPesquisa();
-			ControlerInicio.atualizaFrame("pesquisas");
+			/**
+			 * Acessando o método de trocar Pane do controle Início.
+			 */
+			ControlerInicio.controleInicio.updateFrame("pesquisas");
+			
 			
 		}
 
 		if (event.getSource() == cancelarCadBtn) {
 
+			limparCamposPesquisa();
+			/**
+			 * Acessando o método de trocar Pane do controle Início.
+			 */
+			ControlerInicio.controleInicio.updateFrame("pesquisas");
+			
 		}
 
 	}
