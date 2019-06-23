@@ -20,7 +20,7 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Cadastro">
                     <items>
-                      <MenuItem fx:id="novaPesqMenuItem" mnemonicParsing="false" text="Nova pesquisa" />
+                      <MenuItem fx:id="novaPesqMenuItem" mnemonicParsing="false" onAction="#action" text="Nova pesquisa" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Sobre">

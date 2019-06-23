@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import app.app;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,12 +21,17 @@ import javafx.scene.layout.Pane;
  *
  */
 public class ControlerInicio implements Initializable {
-
-	private Pane pesquisaUnicaPane;
-	private Pane pesquisasPane;
-	private Pane estruturaPane;
-	private Pane cadastroPane;
 	
+	private  Pane pesquisaUnicaPane;
+	private  Pane pesquisasPane;
+	private  Pane estruturaPane;
+	private  Pane cadastroPane;
+	
+	/**
+	 * Atributo do controlador, permite aos outros controladores acessarem 
+	 * os métodos desse controlador.
+	 */
+	public static ControlerInicio controleInicio;
 	
 	@FXML
 	private MenuItem alterSenhaMenuItem;
@@ -46,21 +52,52 @@ public class ControlerInicio implements Initializable {
 	private MenuItem sairMenuItem;
 
 	@FXML
-	private AnchorPane pane;
+	private  AnchorPane pane;
 
 	@FXML
 	void action(ActionEvent event) {
 
 		if(event.getSource() == novaPesqMenuItem) {
+			
 			updateFrame("nova pesquisa");
+			
 		}
 		
+		if(event.getSource() == sairMenuItem) {
+			
+			app.changeStage("Login");
+			
+		}
 		
+		if(event.getSource() == alterSenhaMenuItem) {
+			
+			
+		}
+		
+		if(event.getSource() == deletContaMenuItem) {
+			
+			
+		}
+		
+		if(event.getSource() == infoDevsMenuItem) {
+			
+			
+		}
+		
+		if(event.getSource() == infoSistemaMenuItem) {
+			
+			
+		}
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		
+		/**
+		 * Pegando a referência desse controlador
+		 */
+		controleInicio = this;
 		
 		try {
 			pesquisasPane = FXMLLoader.load(getClass().getClassLoader().
@@ -74,7 +111,7 @@ public class ControlerInicio implements Initializable {
 			
 			cadastroPane = FXMLLoader.load(getClass().getClassLoader().
 					getResource("view/Cadastro.fxml"));
-			
+
 			updateFrame("pesquisas");
 			
 		} catch (IOException e) {
@@ -84,6 +121,11 @@ public class ControlerInicio implements Initializable {
 		
 	}
 
+	
+	/**
+	 * Método para atualizar os Pane
+	 * @param nameFrame
+	 */
 	public void updateFrame(String nameFrame) {
 
 		if (nameFrame.equalsIgnoreCase("pesquisas")) {

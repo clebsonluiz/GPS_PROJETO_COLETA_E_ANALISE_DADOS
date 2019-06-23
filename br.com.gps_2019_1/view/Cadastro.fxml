@@ -69,6 +69,11 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXDatePicker>
+                        <JFXButton fx:id="addPesqBtn" onAction="#action" text="Adicionar pesquisa" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </JFXButton>
                      </children>
                   </GridPane>
                   <Label layoutX="10.0" layoutY="10.0" text="Estrutura da Pesquisa">
