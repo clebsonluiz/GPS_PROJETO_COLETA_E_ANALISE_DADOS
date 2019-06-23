@@ -21,11 +21,14 @@ import javafx.scene.layout.Pane;
  */
 public class ControlerInicio implements Initializable {
 
-	private Pane pesquisaUnicaPane;
-	private Pane pesquisasPane;
-	private Pane estruturaPane;
-	private Pane cadastroPane;
+	public static String TELA = "pesquisas";
 	
+	private  Pane pesquisaUnicaPane;
+	private  Pane pesquisasPane;
+	private  Pane estruturaPane;
+	private  Pane cadastroPane;
+	
+	public static ControlerInicio controleInicio;
 	
 	@FXML
 	private MenuItem alterSenhaMenuItem;
@@ -46,7 +49,7 @@ public class ControlerInicio implements Initializable {
 	private MenuItem sairMenuItem;
 
 	@FXML
-	private AnchorPane pane;
+	private  AnchorPane pane;
 
 	@FXML
 	void action(ActionEvent event) {
@@ -62,6 +65,8 @@ public class ControlerInicio implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
+		controleInicio = this;
+		
 		try {
 			pesquisasPane = FXMLLoader.load(getClass().getClassLoader().
 					getResource("view/Pesquisas.fxml"));
@@ -74,8 +79,8 @@ public class ControlerInicio implements Initializable {
 			
 			cadastroPane = FXMLLoader.load(getClass().getClassLoader().
 					getResource("view/Cadastro.fxml"));
-			
-			updateFrame("pesquisas");
+//			System.out.println(TELA.toString()); 
+			updateFrame(TELA);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -84,6 +89,11 @@ public class ControlerInicio implements Initializable {
 		
 	}
 
+	
+	/**
+	 * Método para atualizar os Pane
+	 * @param nameFrame
+	 */
 	public void updateFrame(String nameFrame) {
 
 		if (nameFrame.equalsIgnoreCase("pesquisas")) {
@@ -123,5 +133,14 @@ public class ControlerInicio implements Initializable {
 		}
 		
 	}
+
+	public static void atualizaFrame(String name) {
+
+		
+		TELA = name;
+		System.out.println("atualizou na tela cadastro " + TELA.toString());
+		
+	}
+
 	
 }

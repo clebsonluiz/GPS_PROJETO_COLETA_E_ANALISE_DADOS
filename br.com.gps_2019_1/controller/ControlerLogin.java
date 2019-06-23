@@ -55,7 +55,7 @@ public class ControlerLogin implements Initializable {
     @FXML
     private JFXTextField nomeField;
 
-	private Usuario usuario;
+	private static Usuario usuario;
 
 	@FXML
 	void action(ActionEvent event) {
@@ -169,6 +169,10 @@ public class ControlerLogin implements Initializable {
 
 		cadUserBtn.setDisable(true);
 		cadUserBtn.setVisible(false);
+	}
+	
+	public static Usuario getUsuario() {
+		return usuario;
 	}
 	
 }
