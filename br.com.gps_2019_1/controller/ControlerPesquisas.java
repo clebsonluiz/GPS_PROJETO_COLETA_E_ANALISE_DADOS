@@ -51,6 +51,8 @@ public class ControlerPesquisas implements Initializable {
     @FXML
     void action(ActionEvent event) {
 
+    	
+    	
     }
 
     /**
