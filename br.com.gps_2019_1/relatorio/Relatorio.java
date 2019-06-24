@@ -26,6 +26,9 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import entidade.Dado;
@@ -300,7 +303,7 @@ public class Relatorio {
 		image.setAlignment(Element.ALIGN_CENTER);
 		paragrafo.add(image);
 		
-		paragrafo.add(new Paragraph("Criado por: " + pesquisa.getUsuario().getNome() + "."));
+		paragrafo.add(new Paragraph("Criada por: " + pesquisa.getUsuario().getNome() + "."));
 		addEmptyLine(paragrafo, 1);
 		paragrafo.add(new Paragraph(
 				"Data de ínicio da pesquisa: " + pesquisa.getDataInicio().toString() + "."
@@ -327,6 +330,76 @@ public class Relatorio {
 		
 		//ADICIONAR PARAGRAFO
 		documento.add(paragrafo);
+	}
+	
+	
+	
+	public void addConteudoEstrutura(EstruturaPesquisa estruturaPesquisa, Document documento)
+	{
+		//TODO
+	}
+	
+	public PdfPTable add(List<Dado> dados)
+	{
+		PdfPTable table = new PdfPTable(3);
+		table.setTotalWidth(LARGURA_TOTAL - M_ESQ - M_DIR);
+		table.setLockedWidth(true);
+		
+		PdfPCell c1 = new PdfPCell(new Phrase("FAMILIA", NOME_COLUNA_FONT));
+		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		c1.setBackgroundColor(COR_FUNDO_NOME_COLUNA);
+		c1.setBorderColor(BaseColor.WHITE);
+		c1.setPadding(10);
+		table.addCell(c1);
+
+		c1 = new PdfPCell(new Phrase("NOME", NOME_COLUNA_FONT));
+		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		c1.setBackgroundColor(COR_FUNDO_NOME_COLUNA);
+		c1.setBorderColor(BaseColor.WHITE);
+		c1.setPadding(10);
+		table.addCell(c1);
+
+		c1 = new PdfPCell(new Phrase("VALOR", NOME_COLUNA_FONT));
+		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		c1.setBackgroundColor(COR_FUNDO_NOME_COLUNA);
+		c1.setBorderColor(BaseColor.WHITE);
+		c1.setPadding(10);
+		table.addCell(c1);
+
+		mudarCor = false;
+		dados.forEach(dado->{
+			
+			mudarCor = !mudarCor;
+			BaseColor cor;
+			if(mudarCor)
+				cor = COR_CELULA_1;
+			else
+				cor = COR_CELULA_2;
+			
+			PdfPCell celula = new PdfPCell(new Phrase(dado.getCol_1_nome_familia()));
+			celula.setHorizontalAlignment(Element.ALIGN_CENTER);
+			celula.setBackgroundColor(cor);
+			celula.setBorderColor(BaseColor.WHITE);
+			celula.setPadding(10);
+			table.addCell(celula);
+
+			celula = new PdfPCell(new Phrase(dado.getCol_2_nome()));
+			celula.setHorizontalAlignment(Element.ALIGN_CENTER);
+			celula.setBorderColor(BaseColor.WHITE);
+			celula.setBackgroundColor(cor);
+			celula.setPadding(10);
+			table.addCell(celula);
+
+			celula = new PdfPCell(new Phrase(dado.getCol_3_valor()));
+			celula.setHorizontalAlignment(Element.ALIGN_CENTER);
+			celula.setBorderColor(BaseColor.WHITE);
+			celula.setBackgroundColor(cor);
+			celula.setPadding(10);
+			table.addCell(celula);
+
+		});
+		
+		return table;
 	}
 	
 }

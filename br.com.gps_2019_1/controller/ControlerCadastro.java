@@ -12,9 +12,13 @@ import app.app;
 import entidade.Dado;
 import entidade.EstruturaPesquisa;
 import entidade.Pesquisa;
+import exceptions.ValidacaoException;
+import facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
+import view.Message;
 
 
 public class ControlerCadastro implements Initializable {
@@ -137,14 +141,28 @@ public class ControlerCadastro implements Initializable {
 	 */
 	public void cadastrar() {
 
-		pesquisa = new Pesquisa();
 		
-		pesquisa.setTitulo(tituloPesqField.getText());
-		pesquisa.setUsuario(ControlerLogin.getUsuario());
-		pesquisa.setDescricao(descricaoPesqField.getText());
-		pesquisa.setEstruturaPesquisas(estruturaPesquisas);
-		pesquisa.setDataInicio(inicioPesqDate.getValue());
-		pesquisa.setDataFim(fimPesqDate.getValue());
+		try
+		{
+			pesquisa = new Pesquisa();
+			
+			pesquisa.setTitulo(tituloPesqField.getText());
+			pesquisa.setUsuario(ControlerLogin.getUsuario());
+			pesquisa.setDescricao(descricaoPesqField.getText());
+			pesquisa.setEstruturaPesquisas(estruturaPesquisas);
+			pesquisa.setDataInicio(inicioPesqDate.getValue());
+			pesquisa.setDataFim(fimPesqDate.getValue());
+			
+			Facade.getInstance().inserir(pesquisa);
+		} 
+		catch (ValidacaoException e) 
+		{
+			Message.getInstance().viewMessage(
+					AlertType.ERROR, 
+					"Erro", 
+					"Erro ao cadastrar pesquisa",
+					e.getMessage());
+		}
 	}
 
 	
@@ -153,18 +171,31 @@ public class ControlerCadastro implements Initializable {
 	 */
 	public void cadastrarEstrutura() {
 
-		estruturaPesquisa = new EstruturaPesquisa();
 		
-		estruturaPesquisa.setTitulo_estrutura(tituloEstruPesqField.getText());
-		estruturaPesquisa.setPesquisa(pesquisa);
-		estruturaPesquisa.setDados(dados);
-		estruturaPesquisa.setCol_3_valor(valorEstruPesqField.getText());
-		estruturaPesquisa.setCol_2_nome(nomeEstruPesqField.getText());
-		estruturaPesquisa.setCol_1_nome_familia(nomeFamiEstruPesqField.getText());
-		estruturaPesquisa.setCategoria_dados(categEstruPesqField.getText());
-		
-		estruturaPesquisas.add(estruturaPesquisa);
-		
+		try
+		{
+			estruturaPesquisa = new EstruturaPesquisa();
+			
+			estruturaPesquisa.setTitulo_estrutura(tituloEstruPesqField.getText());
+			estruturaPesquisa.setPesquisa(pesquisa);
+			estruturaPesquisa.setDados(dados);
+			estruturaPesquisa.setCol_3_valor(valorEstruPesqField.getText());
+			estruturaPesquisa.setCol_2_nome(nomeEstruPesqField.getText());
+			estruturaPesquisa.setCol_1_nome_familia(nomeFamiEstruPesqField.getText());
+			estruturaPesquisa.setCategoria_dados(categEstruPesqField.getText());
+			
+			Facade.getInstance().inserir(estruturaPesquisa);
+			
+			estruturaPesquisas.add(estruturaPesquisa);
+		} 
+		catch (ValidacaoException e) 
+		{
+			Message.getInstance().viewMessage(
+					AlertType.ERROR, 
+					"Erro", 
+					"Erro ao cadastrar estrutura",
+					e.getMessage());
+		}
 	}
 
 	/**
@@ -172,15 +203,28 @@ public class ControlerCadastro implements Initializable {
 	 */
 	public void cadastrarDados() {
 
-		dado = new Dado();
 		
-		dado.setEstruturaPesquisa(estruturaPesquisa);
-		dado.setCol_3_valor(valorDadosField.getText());
-		dado.setCol_2_nome(nomeDadosField.getText());
-		dado.setCol_1_nome_familia(nomeFamiliaDadosField.getText());
-		
-		
-		dados.add(dado);
+		try
+		{
+			dado = new Dado();
+			
+			dado.setEstruturaPesquisa(estruturaPesquisa);
+			dado.setCol_3_valor(valorDadosField.getText());
+			dado.setCol_2_nome(nomeDadosField.getText());
+			dado.setCol_1_nome_familia(nomeFamiliaDadosField.getText());
+			
+			Facade.getInstance().inserir(dado);
+			
+			dados.add(dado);
+		} 
+		catch (ValidacaoException e) 
+		{
+			Message.getInstance().viewMessage(
+					AlertType.ERROR, 
+					"Erro", 
+					"Erro ao cadastrar dado",
+					e.getMessage());
+		}
 		
 	}
 
