@@ -102,32 +102,32 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <JFXButton fx:id="addEstruPesqBtn" onAction="#action" text="Adicionar estrutura" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                        <JFXButton fx:id="addEstruPesqBtn" disable="true" onAction="#action" text="Adicionar estrutura" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXButton>
-                        <JFXTextField fx:id="tituloEstruPesqField" layoutX="364.0" layoutY="42.0" onAction="#action" promptText="Título">
+                        <JFXTextField fx:id="tituloEstruPesqField" disable="true" layoutX="364.0" layoutY="42.0" onAction="#action" promptText="Título">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="categEstruPesqField" layoutX="364.0" layoutY="42.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Categoria" GridPane.columnIndex="1">
+                        <JFXTextField fx:id="categEstruPesqField" disable="true" layoutX="364.0" layoutY="42.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Categoria" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="nomeFamiEstruPesqField" onAction="#action" promptText="Nome da família" GridPane.rowIndex="1">
+                        <JFXTextField fx:id="nomeFamiEstruPesqField" disable="true" onAction="#action" promptText="Nome da família" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="nomeEstruPesqField" onAction="#action" promptText="Nome" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <JFXTextField fx:id="nomeEstruPesqField" disable="true" onAction="#action" promptText="Nome" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="valorEstruPesqField" layoutX="167.0" layoutY="12.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Valor" GridPane.columnIndex="2">
+                        <JFXTextField fx:id="valorEstruPesqField" disable="true" layoutX="167.0" layoutY="12.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Valor" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -160,22 +160,22 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <JFXButton fx:id="addDadosBtn" onAction="#action" prefHeight="26.0" prefWidth="137.0" text="Adicionar dados" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                        <JFXButton fx:id="addDadosBtn" disable="true" onAction="#action" prefHeight="26.0" prefWidth="137.0" text="Adicionar dados" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXButton>
-                        <JFXTextField fx:id="nomeFamiliaDadosField" layoutX="364.0" layoutY="42.0" onAction="#action" promptText="Nome família">
+                        <JFXTextField fx:id="nomeFamiliaDadosField" disable="true" layoutX="364.0" layoutY="42.0" onAction="#action" promptText="Nome família">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="nomeDadosField" layoutX="364.0" layoutY="42.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Nome" GridPane.columnIndex="1">
+                        <JFXTextField fx:id="nomeDadosField" disable="true" layoutX="364.0" layoutY="42.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Nome" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="valorDadosField" layoutX="167.0" layoutY="12.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Valor" GridPane.rowIndex="1">
+                        <JFXTextField fx:id="valorDadosField" disable="true" layoutX="167.0" layoutY="12.0" onAction="#action" prefHeight="26.0" prefWidth="176.0" promptText="Valor" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -200,7 +200,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </FlowPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="finalizarCadBtn" onAction="#action" text="Finalizar">
+                  <JFXButton fx:id="finalizarCadBtn" disable="true" onAction="#action" text="Finalizar">
                      <FlowPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </FlowPane.margin>

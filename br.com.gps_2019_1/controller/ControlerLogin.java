@@ -156,7 +156,7 @@ public class ControlerLogin implements Initializable {
 		try {
 			usuario = Facade.getInstance().getBussinessUsuario().
 					buscarUsuario(loginField.getText(), senhaField.getText());
-			
+//			Atual.usuario.setId(usuario);
 			if (usuario == null) {
 				Message.getInstance().viewMessage(AlertType.ERROR, "Erro ao Logar", "O usuário não EXISTE!", "Usuário inexiste");	
 				return false;

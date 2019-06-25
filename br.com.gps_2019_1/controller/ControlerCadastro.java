@@ -155,6 +155,8 @@ public class ControlerCadastro implements Initializable {
 			pesquisa.setDataFim(fimPesqDate.getValue());
 			
 			Facade.getInstance().inserir(pesquisa);
+			desabitarCamposPesquisa();
+			habilitarCamposEstrutura();
 		} 
 		catch (ValidacaoException e) 
 		{
@@ -188,6 +190,8 @@ public class ControlerCadastro implements Initializable {
 			Facade.getInstance().inserir(estruturaPesquisa);
 			
 			estruturaPesquisas.add(estruturaPesquisa);
+			desabilitarCamposEstrutura();
+			habilitarCamposDados();
 		} 
 		catch (ValidacaoException e) 
 		{
@@ -217,6 +221,7 @@ public class ControlerCadastro implements Initializable {
 			Facade.getInstance().inserir(dado);
 			
 			dados.add(dado);
+			
 		} 
 		catch (ValidacaoException e) 
 		{
@@ -274,4 +279,106 @@ public class ControlerCadastro implements Initializable {
 		valorDadosField.clear();
 
 	}
+	
+	/**
+	 * Método para habilitar os campos da pesquisa.
+	 */
+	public void habitarCamposPesquisa() {
+		
+		tituloPesqField.setDisable(false);
+
+		descricaoPesqField.setDisable(false);
+
+		inicioPesqDate.setDisable(false);
+
+		fimPesqDate.setDisable(false);
+		
+		addPesqBtn.setDisable(false);
+		
+	}
+	
+	/**
+	 * Método para habilitar os campos da estrutura.
+	 */
+	public void habilitarCamposEstrutura() {
+		
+		tituloEstruPesqField.setDisable(false);
+
+		categEstruPesqField.setDisable(false);
+
+		nomeFamiEstruPesqField.setDisable(false);
+
+		nomeEstruPesqField.setDisable(false);
+
+		valorEstruPesqField.setDisable(false);	
+		
+		addEstruPesqBtn.setDisable(false);
+	}
+	
+	
+	/**
+	 * Método para habilitar os campos dos dados.
+	 */
+	public void habilitarCamposDados() {
+		
+		nomeFamiliaDadosField.setDisable(false);
+
+		nomeDadosField.setDisable(false);
+
+		valorDadosField.setDisable(false);
+
+		addDadosBtn.setDisable(false);
+		
+	}
+
+	/**
+	 * Método para desabilitar os campos da pesquisa.
+	 */
+	public void desabitarCamposPesquisa() {
+		
+		tituloPesqField.setDisable(true);
+
+		descricaoPesqField.setDisable(true);
+
+		inicioPesqDate.setDisable(true);
+
+		fimPesqDate.setDisable(true);
+		
+		addPesqBtn.setDisable(true);
+		
+	}
+	
+	/**
+	 * Método para desabilitar os campos da estrutura.
+	 */
+	public void desabilitarCamposEstrutura() {
+		
+		tituloEstruPesqField.setDisable(true);
+
+		categEstruPesqField.setDisable(true);
+
+		nomeFamiEstruPesqField.setDisable(true);
+
+		nomeEstruPesqField.setDisable(true);
+
+		valorEstruPesqField.setDisable(true);	
+		
+		addEstruPesqBtn.setDisable(true);
+	}
+	
+	/**
+	 * Método para desabilitar os campos dos dados.
+	 */
+	public void desabilitarCamposDados() {
+		
+		nomeFamiliaDadosField.setDisable(true);
+
+		nomeDadosField.setDisable(true);
+
+		valorDadosField.setDisable(true);
+
+		addDadosBtn.setDisable(true);
+		
+	}
+	
 }
