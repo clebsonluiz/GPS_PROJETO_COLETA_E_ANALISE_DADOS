@@ -39,9 +39,9 @@ import view.Message;
 public class ControlerPesquisaUnica implements Initializable {
 
 	public static ControlerPesquisaUnica controlerPesquisaUnica;
-	
+
 	private List<EstruturaPesquisa> estruturaPesquisas;
-	
+
 	@FXML
 	private JFXTextField buscarEstruFIeld;
 
@@ -103,16 +103,38 @@ public class ControlerPesquisaUnica implements Initializable {
 	@FXML
 	void action(ActionEvent event) {
 
-		if(event.getSource() == buscarEstruBtn) {
-			
+		if (event.getSource() == buscarEstruBtn) {
+
 			buscarEstrutura();
 		}
-		
-		if(event.getSource() == voltarBtn) {
-			
+
+		if (event.getSource() == voltarBtn) {
+
 			ControlerInicio.controleInicio.updateFrame("pesquisas");
-			
+
 		}
+
+		if (event.getSource() == graficoCmbBox) {
+
+			if (graficoCmbBox.getValue().getValor().equalsIgnoreCase("Area")) {
+				areaTab.getTabPane().getSelectionModel().select(areaTab);
+			}
+
+			if (graficoCmbBox.getValue().getValor().equalsIgnoreCase("Barra")) {
+
+				barraTab.getTabPane().getSelectionModel().select(barraTab);
+
+			}
+
+			if (graficoCmbBox.getValue().getValor().equalsIgnoreCase("Linha")) {
+
+				linhaTab.getTabPane().getSelectionModel().select(linhaTab);
+
+			}
+
+		}
+		
+		
 		
 	}
 
@@ -123,16 +145,16 @@ public class ControlerPesquisaUnica implements Initializable {
 	@FXML
 	void mouseClick(MouseEvent event) {
 
-		if(event.getSource() == listEstruPesqTabela && listEstruPesqTabela.getSelectionModel().getSelectedItem() != null) {
-			
-			if(event.getClickCount() >= 2) {
-			Atual.estrutura_pesquisa = listEstruPesqTabela.getSelectionModel().getSelectedItem();
-			ControlerInicio.controleInicio.updateFrame("estrutura");
-			
-			
+		if (event.getSource() == listEstruPesqTabela
+				&& listEstruPesqTabela.getSelectionModel().getSelectedItem() != null) {
+
+			if (event.getClickCount() >= 2) {
+				Atual.estrutura_pesquisa = listEstruPesqTabela.getSelectionModel().getSelectedItem();
+				ControlerInicio.controleInicio.updateFrame("estrutura");
+
 			}
 		}
-		
+
 	}
 
 	/**
@@ -144,7 +166,7 @@ public class ControlerPesquisaUnica implements Initializable {
 		// TODO Auto-generated method stub
 
 		controlerPesquisaUnica = this;
-		
+
 		/**
 		 * Setando as strings no combo box
 		 */
@@ -160,34 +182,27 @@ public class ControlerPesquisaUnica implements Initializable {
 		valorCol.setCellValueFactory(new PropertyValueFactory<>("col_3_valor"));
 		categoriaCol.setCellValueFactory(new PropertyValueFactory<>("categoria_dados"));
 
-		
-		
 	}
 
 	public void buscarEstrutura() {
-		
+
 		try {
-			Atual.pesquisa.setEstruturaPesquisas(
-					Facade.getInstance().getBussinessEstrutura().
-					getPesquisasUsuarioEspecifica(buscarEstruFIeld.getText(), Atual.pesquisa.getId()));
-		if(Atual.pesquisa.getEstruturaPesquisas() == null) {
-			Atual.pesquisa.setEstruturaPesquisas(new ArrayList<>());
-		}
-			
-		listEstruPesqTabela.getItems().setAll(Atual.pesquisa.getEstruturaPesquisas());
+			Atual.pesquisa.setEstruturaPesquisas(Facade.getInstance().getBussinessEstrutura()
+					.getPesquisasUsuarioEspecifica(buscarEstruFIeld.getText(), Atual.pesquisa.getId()));
+			if (Atual.pesquisa.getEstruturaPesquisas() == null) {
+				Atual.pesquisa.setEstruturaPesquisas(new ArrayList<>());
+			}
+
+			listEstruPesqTabela.getItems().setAll(Atual.pesquisa.getEstruturaPesquisas());
 		} catch (BOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Message.getInstance().viewMessage(
-					AlertType.ERROR, 
-					"Erro", 
-					"Erro ao buscar estruturas",
-					e.getMessage());
+			Message.getInstance().viewMessage(AlertType.ERROR, "Erro", "Erro ao buscar estruturas", e.getMessage());
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 }

@@ -24,17 +24,17 @@ public class BODado extends BO<Dado>{
 	{
 		if(id_estrutura <= 0) throw new BOException("Erro ao consultar dados");
 		/**
-		 * Para acessar a FK de um objeto em HQL o acesso é pelo atributo da FK na forma 
+		 * Para acessar a FK de um objeto em HQL o acesso ï¿½ pelo atributo da FK na forma 
 		 * de objeto, tipo, select p from Pessoa p where p.endereco_fk = 1,
 		 * em HQL fica select p from Pessoa p where p.endereco.id = 1
 		 * 
 		 */
 		return ((DAODado)this.daoT).buscaListaHQLGenerica(Dado.class,
-		"select e from EstruturaPesquisa as e where e.ativado = true and e.pesquisa.id = " + id_estrutura + " and "
-			+ "lower(e.col_1_nome_familia) like lower('%" + dados + "%') "
+		"select d from Dado as d where d.ativado = true and d.estruturaPesquisa.id = " + id_estrutura + " and "
+			+ "lower(d.col_1_nome_familia) like lower('%" + dados + "%') "
 			+ "OR "
-			+ "lower(e.col_2_nome) like lower('%" + dados + "%') "
+			+ "lower(d.col_2_nome) like lower('%" + dados + "%') "
 			+ "OR "
-			+ "lower(e.col_3_valor) like lower('%" + dados + "%') ");
+			+ "lower(d.col_3_valor) like lower('%" + dados + "%') ");
 	}
 }
