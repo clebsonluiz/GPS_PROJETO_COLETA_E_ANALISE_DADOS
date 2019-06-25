@@ -108,6 +108,12 @@ public class ControlerPesquisaUnica implements Initializable {
 			buscarEstrutura();
 		}
 		
+		if(event.getSource() == voltarBtn) {
+			
+			ControlerInicio.controleInicio.updateFrame("pesquisas");
+			
+		}
+		
 	}
 
 	/**
