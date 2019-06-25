@@ -9,6 +9,8 @@ import entidade.Entidade;
 import entidade.EstruturaPesquisa;
 import entidade.Pesquisa;
 import entidade.Usuario;
+import exceptions.BOException;
+import exceptions.DAOException;
 import exceptions.ValidacaoException;
 
 public class Facade {
@@ -85,6 +87,7 @@ public class Facade {
 			return bussinessDado.buscar(id);
 		return null;
 	}
+	
 
 	public BOUsuario getBussinessUsuario() {
 		return bussinessUsuario;

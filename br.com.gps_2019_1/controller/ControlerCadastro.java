@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -26,8 +27,8 @@ public class ControlerCadastro implements Initializable {
 	private Pesquisa pesquisa;
 	private EstruturaPesquisa estruturaPesquisa;
 	private Dado dado;
-	private List<EstruturaPesquisa> estruturaPesquisas;
-	private List<Dado> dados;
+	private List<EstruturaPesquisa> estruturaPesquisas = new ArrayList<>();
+	private List<Dado> dados= new ArrayList<>();
 	
 	
 	@FXML
