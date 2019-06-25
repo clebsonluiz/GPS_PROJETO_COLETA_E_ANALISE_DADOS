@@ -24,6 +24,8 @@ import util.TipoGrafico;
 
 public class ControlerEstrutura implements Initializable {
 
+	public static ControlerEstrutura controlerEstrutura;
+	
 	@FXML
 	private JFXTextField buscarDadosFIeld;
 
@@ -98,6 +100,8 @@ public class ControlerEstrutura implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
+		controlerEstrutura = this;
+		
 		/**
 		 * Setando as strings no combo box
 		 */

@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
+import entidade.EstruturaPesquisa;
 import entidade.Pesquisa;
 import exceptions.BOException;
 import exceptions.DAOException;
@@ -24,10 +28,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import view.Message;
 
 public class ControlerPesquisas implements Initializable {
 
+	public static ControlerPesquisas controlerPesquisas;
+	
 	private List<Pesquisa> pesquisas;
 	
     @FXML
@@ -38,6 +45,9 @@ public class ControlerPesquisas implements Initializable {
 
     @FXML
     private PieChart periodoGraficoP;
+    
+    @FXML
+    private JFXButton relatorioBtn;
 
     @FXML
     private TableView<Pesquisa> listPesqTabela;
@@ -68,6 +78,17 @@ public class ControlerPesquisas implements Initializable {
     		buscarPesquisas();
     	}
     	
+    	if(event.getSource() == relatorioBtn) {
+    		
+    		FileChooser chooser = new FileChooser();
+//    		chooser.setTitle("Novo relatório");
+//    		chooser.setInitialFileName("teste");
+    		chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Arquivos pdf", "*.pdf"));
+    		File file = chooser.showSaveDialog(null);
+    		
+    		
+    		
+    	}
     	
     }
 
@@ -84,6 +105,10 @@ public class ControlerPesquisas implements Initializable {
     		if(event.getClickCount() >= 2 )
     		{
     			//TODO - Abrir tela de Estruturas Aqui
+    			//Vê se ta certo Clébson
+    			Atual.pesquisa = listPesqTabela.getSelectionModel().getSelectedItem();
+    			ControlerInicio.controleInicio.updateFrame("pesquisaUnica");
+    			
     		}
     		else
     		{
@@ -117,24 +142,11 @@ public class ControlerPesquisas implements Initializable {
 		nomeCol.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 		descricaoCol.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		
+		controlerPesquisas = this;
 		
-		
-		/**
-		 * Adicionando as pesquisas na tabela
-		 */
-		/*try {
-			pesquisas = Facade.getInstance().getBussinessPesquisa().buscarALL();
-		
-			listPesqTabela.getItems().setAll(pesquisas);
-			
-		} catch (BOException e) {
-			e.printStackTrace();
-		} catch (DAOException e) {
-			e.printStackTrace();
-		}*/
-		
+				
 	}
-
+	
 	
 	private void buscarPesquisas()
 	{
