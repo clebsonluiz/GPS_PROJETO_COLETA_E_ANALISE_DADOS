@@ -1,12 +1,16 @@
 package controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import entidade.Pesquisa;
+import exceptions.BOException;
+import exceptions.DAOException;
+import facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +22,8 @@ import javafx.scene.input.MouseEvent;
 
 public class ControlerPesquisas implements Initializable {
 
+	private List<Pesquisa> pesquisas;
+	
     @FXML
     private JFXTextField buscarPesquiFIeld;
 
@@ -81,6 +87,23 @@ public class ControlerPesquisas implements Initializable {
 		nomeCol.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 		descricaoCol.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		
+		
+		
+		/**
+		 * Adicionando as pesquisas na tabela
+		 */
+		try {
+			pesquisas = Facade.getInstance().getBussinessPesquisa().buscarALL();
+		
+			listPesqTabela.getItems().setAll(pesquisas);
+			
+		} catch (BOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
