@@ -9,6 +9,7 @@ import dao.DAODado;
 import dao.DAOEstruturaPesquisa;
 import dao.DAOPesquisa;
 import dao.DAOUsuario;
+import facade.Facade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,12 +35,9 @@ public class app extends Application {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Pimba");
 		
-		new DAOUsuario();
-		new DAOPesquisa();
-		new DAOEstruturaPesquisa();
-		new DAODado();
+		Facade.getInstance();
+		
 		launch(args);
 	}
 
