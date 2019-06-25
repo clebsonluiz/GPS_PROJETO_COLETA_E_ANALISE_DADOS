@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -8,6 +9,9 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
 import entidade.Dado;
+import exceptions.BOException;
+import exceptions.DAOException;
+import facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,14 +22,16 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import util.TipoGrafico;
+import view.Message;
 
 public class ControlerEstrutura implements Initializable {
 
 	public static ControlerEstrutura controlerEstrutura;
-	
+
 	@FXML
 	private JFXTextField buscarDadosFIeld;
 
@@ -81,6 +87,11 @@ public class ControlerEstrutura implements Initializable {
 	@FXML
 	void action(ActionEvent event) {
 
+		if(event.getSource() == buscarDadosBtn) {
+			buscarDados();
+			
+		}
+		
 	}
 
 	/**
@@ -89,6 +100,8 @@ public class ControlerEstrutura implements Initializable {
 	 */
 	@FXML
 	void mouseClick(MouseEvent event) {
+
+
 
 	}
 
@@ -101,7 +114,7 @@ public class ControlerEstrutura implements Initializable {
 		// TODO Auto-generated method stub
 
 		controlerEstrutura = this;
-		
+
 		/**
 		 * Setando as strings no combo box
 		 */
@@ -114,6 +127,28 @@ public class ControlerEstrutura implements Initializable {
 		familiaCol.setCellValueFactory(new PropertyValueFactory<>("col_1_nome_familia"));
 		nomeCol.setCellValueFactory(new PropertyValueFactory<>("col_2_nome"));
 		valorCol.setCellValueFactory(new PropertyValueFactory<>("col_3_valor"));
+
+	}
+
+	public void buscarDados() {
+
+		try {
+			Atual.estrutura_pesquisa.setDados(Facade.getInstance().getBussinessDado()
+					.getPesquisasUsuarioEspecifica(buscarDadosFIeld.getText(), Atual.estrutura_pesquisa.getId()));
+			if (Atual.estrutura_pesquisa.getDados() == null) {
+				Atual.estrutura_pesquisa.setDados(new ArrayList<>());
+			}
+
+			listDadosTabela.getItems().setAll(Atual.estrutura_pesquisa.getDados());
+
+		} catch (BOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Message.getInstance().viewMessage(AlertType.ERROR, "Erro", "Erro ao buscar dados", e.getMessage());
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
