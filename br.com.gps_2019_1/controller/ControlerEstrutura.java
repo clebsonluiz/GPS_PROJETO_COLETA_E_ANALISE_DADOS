@@ -92,6 +92,12 @@ public class ControlerEstrutura implements Initializable {
 			
 		}
 		
+		if(event.getSource() == voltarBtn) {
+			
+			ControlerInicio.controleInicio.updateFrame("pesquisaUnica");
+			
+		}
+		
 	}
 
 	/**
