@@ -62,7 +62,7 @@ public class ControlerLogin implements Initializable {
     @FXML
     private JFXTextField nomeField;
 
-	private static Usuario usuario;
+//	private static Usuario usuario;
 
 	@FXML
 	void action(ActionEvent event) {
@@ -98,7 +98,7 @@ public class ControlerLogin implements Initializable {
 			
 			if(senhaField.getText().equals(confimSenhaField.getText())) {			
 			try {
-				usuario = new Usuario();
+				Usuario usuario = new Usuario();
 				
 				usuario.setNome(nomeField.getText());
 				usuario.setLogin(loginField.getText());
@@ -154,10 +154,10 @@ public class ControlerLogin implements Initializable {
 	public boolean efetuarLogin() {
 		
 		try {
-			usuario = Facade.getInstance().getBussinessUsuario().
+			Atual.usuario = Facade.getInstance().getBussinessUsuario().
 					buscarUsuario(loginField.getText(), senhaField.getText());
 //			Atual.usuario.setId(usuario);
-			if (usuario == null) {
+			if (Atual.usuario == null) {
 				Message.getInstance().viewMessage(AlertType.ERROR, "Erro ao Logar", "O usuário não EXISTE!", "Usuário inexiste");	
 				return false;
 			}
@@ -201,8 +201,8 @@ public class ControlerLogin implements Initializable {
 		cadUserBtn.setVisible(false);
 	}
 	
-	public static Usuario getUsuario() {
-		return usuario;
-	}
+//	public static Usuario getUsuario() {
+//		return usuario;
+//	}
 	
 }

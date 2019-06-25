@@ -31,7 +31,7 @@ public class BOPesquisa extends BO<Pesquisa>{
 		 */
 		return ((DAOPesquisa)this.daoT).buscaListaHQLGenerica(Pesquisa.class,
 		"select p from Pesquisa as p where p.ativado = true and p.usuario.id = " + id_usuario + " and "
-				+ "lower(p.nome) like lower('%" + pesquisa + "%')");
+				+ "lower(p.titulo) like lower('%" + pesquisa + "%')");
 	}
 
 }

@@ -148,7 +148,7 @@ public class ControlerCadastro implements Initializable {
 			pesquisa = new Pesquisa();
 			
 			pesquisa.setTitulo(tituloPesqField.getText());
-			pesquisa.setUsuario(ControlerLogin.getUsuario());
+			pesquisa.setUsuario(Atual.usuario);
 			pesquisa.setDescricao(descricaoPesqField.getText());
 			pesquisa.setEstruturaPesquisas(estruturaPesquisas);
 			pesquisa.setDataInicio(inicioPesqDate.getValue());
