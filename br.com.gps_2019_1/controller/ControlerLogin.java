@@ -5,6 +5,9 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javax.persistence.NoResultException;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
@@ -12,13 +15,17 @@ import com.jfoenix.controls.JFXTextField;
 
 import app.app;
 import entidade.Usuario;
+import exceptions.BOException;
+import exceptions.DAOException;
 import exceptions.ValidacaoException;
 import facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import view.Message;
 
 /**
  * @author ayrton
@@ -61,9 +68,9 @@ public class ControlerLogin implements Initializable {
 	void action(ActionEvent event) {
 
 		if (event.getSource() == entrarBtn) {
-//    		if(efetuarLogin()) {
-			app.changeStage("Inicio");
-//    		}
+    		if(efetuarLogin()) {
+//			app.changeStage("Inicio");
+    		}
 		}
 
 		if (cadUserChBox.isSelected()) {
@@ -145,6 +152,29 @@ public class ControlerLogin implements Initializable {
 	}
 
 	public boolean efetuarLogin() {
+		
+		try {
+			usuario = Facade.getInstance().getBussinessUsuario().
+					buscarUsuario(loginField.getText(), senhaField.getText());
+			
+			if (usuario == null) {
+				Message.getInstance().viewMessage(AlertType.ERROR, "Erro ao Logar", "O usuário não EXISTE!", "Usuário inexiste");	
+				return false;
+			}
+			
+			app.changeStage("Inicio");
+			Message.getInstance().viewMessage(AlertType.INFORMATION, "Logado", "Login efetuado", "Logado com sucesso!");
+			limparCampos();
+			
+		} catch (BOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Message.getInstance().
+			viewMessage(AlertType.ERROR, "Erro!", "Erro ao Logar!", "Usuário e senha incorretos ou inxexistentes!");
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		return false;
 
 	}
