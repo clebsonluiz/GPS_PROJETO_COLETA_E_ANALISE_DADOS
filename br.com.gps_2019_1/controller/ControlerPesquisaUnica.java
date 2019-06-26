@@ -79,19 +79,19 @@ public class ControlerPesquisaUnica implements Initializable {
 	private Tab areaTab;
 
 	@FXML
-	private AreaChart<String, Double> areaGrafico;
+	private AreaChart<String, Number> areaGrafico;
 
 	@FXML
 	private Tab barraTab;
 
 	@FXML
-	private BarChart<String, Double> barraGrafico;
+	private BarChart<String, Number> barraGrafico;
 
 	@FXML
 	private Tab linhaTab;
 
 	@FXML
-	private LineChart<String, Double> linhaGrafico;
+	private LineChart<String, Number> linhaGrafico;
 
 	@FXML
 	private Tab pizzaTab;
@@ -185,19 +185,15 @@ public class ControlerPesquisaUnica implements Initializable {
 					e.getDados().forEach(dado->{
 						
 						pizzaGrafico.getData().add( new PieChart.Data(dado.getCol_1_nome_familia() + "|" + dado.getCol_2_nome(), EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()) ));
+						
+						preencherGraficoLinha(dado, linhaGrafico);
+						preencherGraficoArea(dado, areaGrafico);
+						
 					});
 					
 					List<Dado> dados = EntidadeUtil.getOrdenado(e.getDados());
 					dados.forEach(dado->{
-						XYChart.Series series1 = new XYChart.Series();
-				        series1.setName(dado.getCol_2_nome());       
-				        series1.getData().add(new XYChart.Data(dado.getCol_1_nome_familia(), EntidadeUtil.parceValorToDouble(dado.getCol_3_valor())));
-					
-				        System.out.println( EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()));
-					
-				        barraGrafico.getData().add(series1);
-				        areaGrafico.getData().add(series1);
-				        linhaGrafico.getData().add(series1);
+						preencherGraficoBarra(dado, barraGrafico);
 					});
 				} catch (DAOException e1) {
 					// TODO Auto-generated catch block
@@ -257,4 +253,91 @@ public class ControlerPesquisaUnica implements Initializable {
 
 	}
 
+	
+	public static void preencherGraficoLinha(Dado dado, LineChart<String, Number> linhaGrafico)
+	{
+		XYChart.Series series1 = new XYChart.Series();
+		
+        XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(dado.getCol_1_nome_familia(), EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()));
+        
+        series1.setName(dado.getCol_2_nome());       
+        
+        XYChart.Series<String, Number> seriesTemp = null;
+        
+        for(XYChart.Series serie: linhaGrafico.getData())
+        {
+        	if(serie.getName().equals(series1.getName()))
+        	{
+        		seriesTemp = serie;
+        		break;
+        	}
+        }
+        
+        if(seriesTemp != null)
+        	seriesTemp.getData().add(data);
+        else
+        {
+        	series1.getData().add(data);
+        	linhaGrafico.getData().add(series1);
+        }
+	}
+	
+	public static void preencherGraficoArea(Dado dado, AreaChart<String, Number> areaGrafico)
+	{
+		XYChart.Series series1 = new XYChart.Series();
+		
+        XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(dado.getCol_1_nome_familia(), EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()));
+        
+        series1.setName(dado.getCol_2_nome());       
+        
+        XYChart.Series<String, Number> seriesTemp = null;
+        
+        for(XYChart.Series serie: areaGrafico.getData())
+        {
+        	if(serie.getName().equals(series1.getName()))
+        	{
+        		seriesTemp = serie;
+        		break;
+        	}
+        }
+        
+        if(seriesTemp != null)
+        	seriesTemp.getData().add(data);
+        else
+        {
+        	series1.getData().add(data);
+        	areaGrafico.getData().add(series1);
+        }
+	}
+	
+	public static void preencherGraficoBarra(Dado dado, BarChart<String, Number> barraGrafico)
+	{
+		XYChart.Series series1 = new XYChart.Series();
+		
+        XYChart.Data data = new XYChart.Data(dado.getCol_1_nome_familia(), EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()));
+        
+        series1.setName(dado.getCol_2_nome());       
+        
+        XYChart.Series seriesTemp = null;
+        
+        for(XYChart.Series serie: barraGrafico.getData())
+        {
+        	if(serie.getName().equals(series1.getName()))
+        	{
+        		seriesTemp = serie;
+        		break;
+        	}
+        }
+        
+        if(seriesTemp != null)
+        {
+        	seriesTemp.getData().add(0, data);
+        }
+        else
+        {
+        	series1.getData().add(data);
+        	barraGrafico.getData().add(series1);
+        }
+	}
+	
 }

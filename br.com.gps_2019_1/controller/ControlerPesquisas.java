@@ -116,6 +116,12 @@ public class ControlerPesquisas implements Initializable {
     			if(file != null) {
     			try {
 					Relatorio.gerarRelatorio(p, file.getAbsolutePath());
+					
+					Message.getInstance().viewMessage(
+							AlertType.INFORMATION, 
+							"Geração de Relatorio", 
+							"Relatorio gerado",
+							file.getAbsolutePath() + ".pdf");
 				} catch (FileNotFoundException | DocumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
