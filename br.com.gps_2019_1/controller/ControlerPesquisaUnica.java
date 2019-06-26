@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
+import entidade.Dado;
 import entidade.EstruturaPesquisa;
 import exceptions.BOException;
 import exceptions.DAOException;
@@ -23,12 +24,14 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import util.EntidadeUtil;
 import util.TipoGrafico;
 import view.Message;
 
@@ -76,19 +79,19 @@ public class ControlerPesquisaUnica implements Initializable {
 	private Tab areaTab;
 
 	@FXML
-	private AreaChart<?, ?> areaGrafico;
+	private AreaChart<String, Double> areaGrafico;
 
 	@FXML
 	private Tab barraTab;
 
 	@FXML
-	private BarChart<?, ?> barraGrafico;
+	private BarChart<String, Double> barraGrafico;
 
 	@FXML
 	private Tab linhaTab;
 
 	@FXML
-	private LineChart<?, ?> linhaGrafico;
+	private LineChart<String, Double> linhaGrafico;
 
 	@FXML
 	private Tab pizzaTab;
@@ -116,26 +119,29 @@ public class ControlerPesquisaUnica implements Initializable {
 
 		if (event.getSource() == graficoCmbBox) {
 
-			if (graficoCmbBox.getValue().getValor().equalsIgnoreCase("Area")) {
+			if (graficoCmbBox.getValue().equals(TipoGrafico.AREA)) {
 				areaTab.getTabPane().getSelectionModel().select(areaTab);
 			}
 
-			if (graficoCmbBox.getValue().getValor().equalsIgnoreCase("Barra")) {
+			if (graficoCmbBox.getValue().equals(TipoGrafico.BARRA)) {
 
 				barraTab.getTabPane().getSelectionModel().select(barraTab);
 
 			}
 
-			if (graficoCmbBox.getValue().getValor().equalsIgnoreCase("Linha")) {
+			if (graficoCmbBox.getValue().equals(TipoGrafico.LINHA)) {
 
 				linhaTab.getTabPane().getSelectionModel().select(linhaTab);
 
 			}
+			
+			if(graficoCmbBox.getValue().equals(TipoGrafico.PIZZA)) {
+				
+				pizzaTab.getTabPane().getSelectionModel().select(pizzaTab);
+				
+			}
 
 		}
-		
-		
-		
 	}
 
 	/**
@@ -152,6 +158,52 @@ public class ControlerPesquisaUnica implements Initializable {
 				Atual.estrutura_pesquisa = listEstruPesqTabela.getSelectionModel().getSelectedItem();
 				ControlerInicio.controleInicio.updateFrame("estrutura");
 
+			}
+			else
+			{
+				try {
+					EstruturaPesquisa e = listEstruPesqTabela.getSelectionModel().getSelectedItem();
+					e.setDados(
+					Facade.getInstance().getBussinessDado().getEstruturasPesquisa(e.getId())
+							);
+
+					areaGrafico.getData().clear();
+					linhaGrafico.getData().clear();
+					barraGrafico.getData().clear();
+					pizzaGrafico.getData().clear();
+					
+					areaGrafico.setTitle(e.getTitulo_estrutura());
+					linhaGrafico.setTitle(e.getTitulo_estrutura());
+					barraGrafico.setTitle(e.getTitulo_estrutura());
+					pizzaGrafico.setTitle(e.getTitulo_estrutura());
+					
+					barraGrafico.getYAxis().setLabel(e.getCategoria_dados());
+					areaGrafico.getYAxis().setLabel(e.getCategoria_dados());
+					linhaGrafico.getYAxis().setLabel(e.getCategoria_dados());
+					
+					
+					e.getDados().forEach(dado->{
+						
+						pizzaGrafico.getData().add( new PieChart.Data(dado.getCol_1_nome_familia() + "|" + dado.getCol_2_nome(), EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()) ));
+					});
+					
+					List<Dado> dados = EntidadeUtil.getOrdenado(e.getDados());
+					dados.forEach(dado->{
+						XYChart.Series series1 = new XYChart.Series();
+				        series1.setName(dado.getCol_2_nome());       
+				        series1.getData().add(new XYChart.Data(dado.getCol_1_nome_familia(), EntidadeUtil.parceValorToDouble(dado.getCol_3_valor())));
+					
+				        System.out.println( EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()));
+					
+				        barraGrafico.getData().add(series1);
+				        areaGrafico.getData().add(series1);
+				        linhaGrafico.getData().add(series1);
+					});
+				} catch (DAOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}				
+				
 			}
 		}
 

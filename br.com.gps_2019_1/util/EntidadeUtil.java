@@ -47,7 +47,7 @@ public class EntidadeUtil {
 	public static List<Dado> getOrdenado(List<Dado> dados)
 	{
 		List<Dado> dadosAdicionais = new ArrayList<>();
-		
+		if(dados == null) dados = new ArrayList<>();
 		for(Dado dado: dados)
 		{
 			boolean achei = false;

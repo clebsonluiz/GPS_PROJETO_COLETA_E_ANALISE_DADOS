@@ -87,17 +87,43 @@ public class ControlerEstrutura implements Initializable {
 	@FXML
 	void action(ActionEvent event) {
 
-		if(event.getSource() == buscarDadosBtn) {
+		if (event.getSource() == buscarDadosBtn) {
 			buscarDados();
-			
+
 		}
-		
-		if(event.getSource() == voltarBtn) {
-			
+
+		if (event.getSource() == voltarBtn) {
+
 			ControlerInicio.controleInicio.updateFrame("pesquisaUnica");
-			
+
 		}
-		
+
+		if (event.getSource() == graficoCmbBox) {
+
+			if (graficoCmbBox.getValue().equals(TipoGrafico.AREA)) {
+				areaTab.getTabPane().getSelectionModel().select(areaTab);
+			}
+
+			if (graficoCmbBox.getValue().equals(TipoGrafico.BARRA)) {
+
+				barraTab.getTabPane().getSelectionModel().select(barraTab);
+
+			}
+
+			if (graficoCmbBox.getValue().equals(TipoGrafico.LINHA)) {
+
+				linhaTab.getTabPane().getSelectionModel().select(linhaTab);
+
+			}
+
+			if (graficoCmbBox.getValue().equals(TipoGrafico.PIZZA)) {
+
+				pizzaTab.getTabPane().getSelectionModel().select(pizzaTab);
+
+			}
+
+		}
+
 	}
 
 	/**
@@ -106,8 +132,6 @@ public class ControlerEstrutura implements Initializable {
 	 */
 	@FXML
 	void mouseClick(MouseEvent event) {
-
-
 
 	}
 
