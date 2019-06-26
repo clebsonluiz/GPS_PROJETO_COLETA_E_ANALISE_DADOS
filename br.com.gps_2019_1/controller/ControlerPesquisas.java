@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -29,6 +31,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import relatorio.Relatorio;
 import view.Message;
 
 public class ControlerPesquisas implements Initializable {
@@ -78,15 +81,47 @@ public class ControlerPesquisas implements Initializable {
     		buscarPesquisas();
     	}
     	
+    	
     	if(event.getSource() == relatorioBtn) {
-    		
-    		FileChooser chooser = new FileChooser();
-//    		chooser.setTitle("Novo relatório");
-//    		chooser.setInitialFileName("teste");
-    		chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Arquivos pdf", "*.pdf"));
-    		File file = chooser.showSaveDialog(null);
-    		
-    		
+    		if(listPesqTabela.getSelectionModel().getSelectedItem() != null) {
+    			
+    			Pesquisa p = listPesqTabela.getSelectionModel().getSelectedItem();    			
+    			try 
+    			{
+					p.setEstruturaPesquisas(Facade.getInstance().getBussinessEstrutura().getEstruturasPesquisa(p.getId()));
+					
+					p.getEstruturaPesquisas().forEach(e->{
+						try {
+							e.setDados(Facade.getInstance().getBussinessDado().getEstruturasPesquisa(e.getId()));
+						} catch (BOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (DAOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					});
+					
+					
+				} catch (DAOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    			
+    			
+    			FileChooser chooser = new FileChooser();
+    			chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Arquivos pdf", "*.pdf"));
+    			File file = chooser.showSaveDialog(null);
+    			
+    			if(file != null) {
+    			try {
+					Relatorio.gerarRelatorio(p, file.getAbsolutePath());
+				} catch (FileNotFoundException | DocumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    			}
+    		}
     		
     	}
     	

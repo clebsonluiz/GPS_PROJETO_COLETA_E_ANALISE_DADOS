@@ -96,14 +96,14 @@ public class Relatorio {
 		
 		Pesquisa p = new Pesquisa();
 		p.setTitulo("Titulo da Pesquisa");
-		p.setDescricao("Descrição da Pesquisa");
+		p.setDescricao("Descriï¿½ï¿½o da Pesquisa");
 		p.setDataInicio(LocalDate.of(2019, 5, 1));
 		p.setDataFim(LocalDate.of(2019, 9, 1));
 		
 		
 		
 		Usuario u = new Usuario();
-		u.setNome("Usuário123");
+		u.setNome("Usuï¿½rio123");
 		p.setUsuario(u);
 		p.setEstruturaPesquisas(estruturas);
 		
@@ -323,7 +323,7 @@ public class Relatorio {
 			dataSet.setValue(
 					dado.getCol_1_nome_familia() 
 					+ "|" + dado.getCol_2_nome(),
-					Double.parseDouble(dado.getCol_3_valor()));
+					EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()));
 		});
 		
 		ChartsUtil.changeColorsPiePlot(plot, ChartsUtil.CORES_1);
@@ -362,7 +362,7 @@ public class Relatorio {
 			dataSet.setValue(
 					dado.getCol_1_nome_familia() 
 					+ "|" + dado.getCol_2_nome(),
-					Double.parseDouble(dado.getCol_3_valor()));
+					EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()));
 		});
 		
 		ChartsUtil.changeColorsPiePlot(plot, ChartsUtil.CORES_1);
@@ -392,7 +392,7 @@ public class Relatorio {
 
 		temp.forEach(dado->{
 			dataSet.addValue(
-					Double.parseDouble(dado.getCol_3_valor()),
+					EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()),
 					dado.getCol_2_nome(),
 					dado.getCol_1_nome_familia());
 		});
@@ -422,7 +422,7 @@ public class Relatorio {
 
 		temp.forEach(dado->{
 			dataSet.addValue(
-					Double.parseDouble(dado.getCol_3_valor()),
+					EntidadeUtil.parceValorToDouble(dado.getCol_3_valor()),
 					dado.getCol_2_nome(),
 					dado.getCol_1_nome_familia());
 		});
@@ -488,7 +488,7 @@ public class Relatorio {
 		paragrafo.add(new Paragraph("Criada por: " + pesquisa.getUsuario().getNome() + "."));
 		addEmptyLine(paragrafo, 1);
 		paragrafo.add(new Paragraph(
-				"Data de ínicio da pesquisa: " + pesquisa.getDataInicio().toString() + "."
+				"Data de ï¿½nicio da pesquisa: " + pesquisa.getDataInicio().toString() + "."
 				+ "\n" + 
 				"Data final da pesquisa: " + pesquisa.getDataFim().toString() + "."));
 		
@@ -503,7 +503,7 @@ public class Relatorio {
 							projeto.getData_inicio(),
 							DateUtil.getDataAtual()
 							);
-			paragrafo.add(new Paragraph("São " + dias + " dias ao todo e "+ 
+			paragrafo.add(new Paragraph("Sï¿½o " + dias + " dias ao todo e "+ 
 							dias_decorridos + " dias decorridos desde a data de inicio do projeto."));
 		} 
 		catch (ValidacaoException e) {e.printStackTrace();}

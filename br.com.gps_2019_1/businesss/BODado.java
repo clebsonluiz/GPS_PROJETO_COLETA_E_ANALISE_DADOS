@@ -17,7 +17,7 @@ public class BODado extends BO<Dado>{
 	{
 		if(id_estrutura <= 0) throw new BOException("Erro ao consultar dados");
 		return ((DAODado)this.daoT).buscaListaHQLGenerica(Dado.class,
-		"select d from dado as d where d.ativado = true and d.estruturaPesquisa.id = " + id_estrutura);
+		"select d from Dado as d where d.ativado = true and d.estruturaPesquisa.id = " + id_estrutura);
 	}
 	
 	public List<Dado> getPesquisasUsuarioEspecifica(String dados, int id_estrutura) throws BOException, DAOException

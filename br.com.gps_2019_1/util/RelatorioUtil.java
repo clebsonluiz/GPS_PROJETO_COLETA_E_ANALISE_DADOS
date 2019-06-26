@@ -95,8 +95,8 @@ public interface RelatorioUtil {
 	            text.setBorder(Rectangle.BOTTOM);
 	            text.setBorderColor(BaseColor.LIGHT_GRAY);
 	            text.setHorizontalAlignment(PdfPCell.ALIGN_TOP);
-	            text.addElement(new Phrase("Relatorio PDF para PBD - GESTÃO DE PROJETO", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-	            text.addElement(new Phrase("Tutorial para o Cabeçalho e Rodapé tirados de https://memorynotfound.com", new Font(Font.FontFamily.HELVETICA, 8)));
+	            text.addElement(new Phrase("Relatorio PDF para PBD - GESTï¿½O DE PROJETO", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+	            text.addElement(new Phrase("Tutorial para o Cabeï¿½alho e Rodapï¿½ tirados de https://memorynotfound.com", new Font(Font.FontFamily.HELVETICA, 8)));
 	            header.addCell(text);
 
 	            // write content
@@ -123,26 +123,31 @@ public interface RelatorioUtil {
 	            footer.getDefaultCell().setBorderColor(BaseColor.LIGHT_GRAY);
 
 	            // add copyright
-//	            footer.addCell(new Phrase("Unidade Acadêmica de Serra Talhada - UFRPE", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.GRAY)));
+//	            footer.addCell(new Phrase("Unidade Acadï¿½mica de Serra Talhada - UFRPE", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.GRAY)));
 	         
 	            // add image
-	            java.awt.Image imagem = ViewUtil.Icones.IMAGEM_LOGO_ITEXT.getImage();
-	            
-	            Image logo = Image.getInstance(imagem, Color.WHITE);
-	            logo.scalePercent(6);
-	            
 	            PdfPCell textLogo = new PdfPCell();
 	            textLogo.setPaddingBottom(10);
 	            textLogo.setPaddingLeft(10);
 	            textLogo.setBorder(Rectangle.TOP);
 	            textLogo.setBorderColor(BaseColor.LIGHT_GRAY);
-	            textLogo.addElement(logo);
+//	            try {
+//	            	java.awt.Image imagem = ViewUtil.Icones.IMAGEM_LOGO_ITEXT.getImage();
+//	            	
+//	            	Image logo = Image.getInstance(imagem, Color.WHITE);
+//	            	logo.scalePercent(6);
+//	            	
+//	            	textLogo.addElement(logo);
+//					
+//				} catch (Exception e) {
+//					// TODO: handle exception
+//				}
 	            textLogo.addElement(new Phrase("iText PDF Library for Java", new Font(Font.FontFamily.HELVETICA, 7)));
 	            footer.addCell(textLogo);
 
 	            // add current page count
 	            footer.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
-	            footer.addCell(new Phrase(String.format("Pág. %d de", writer.getPageNumber()), new Font(Font.FontFamily.HELVETICA, 8)));
+	            footer.addCell(new Phrase(String.format("Pï¿½g. %d de", writer.getPageNumber()), new Font(Font.FontFamily.HELVETICA, 8)));
 
 	            // add placeholder for total page count
 	            PdfPCell totalPageCount = new PdfPCell(total);
@@ -155,7 +160,7 @@ public interface RelatorioUtil {
 	            canvas.beginMarkedContentSequence(PdfName.ARTIFACT);
 	            footer.writeSelectedRows(0, -1, 34, 50, canvas);
 	            canvas.endMarkedContentSequence();
-	        } catch(DocumentException | IOException de) {
+	        } catch(DocumentException de) {
 	            throw new ExceptionConverter(de);
 	        }
 	    }
